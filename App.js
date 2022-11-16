@@ -1,5 +1,5 @@
 import { SafeAreaView, Text, View } from "react-native";
-import { Stack } from "./Stack";
+import { Stack } from "./src/Stack";
 
 const App = () => {
   return (
