@@ -1,7 +1,7 @@
 import { SafeAreaView, StyleSheet, Text, View } from "react-native"
 import { Like } from "../../../common/components/Like"
 
-export const ListItem = ({ text, isFavourite }) => {
+export const ListItem = ({ text, isFavourite, likeHandle }) => {
     return (
         <View>
             <View style={styles.wrapper}>
@@ -10,6 +10,7 @@ export const ListItem = ({ text, isFavourite }) => {
                 </Text>
 
                 <Like
+                    handlePress={likeHandle}
                     active={isFavourite}
                     width={48}
                     height={48}
