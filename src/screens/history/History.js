@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
         marginLeft: 24
     },
     text: {
+        fontFamily: "Inter",
         width: 259,
         fontSize: 16,
         fontWeight: "500",
