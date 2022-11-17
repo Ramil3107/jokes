@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from "react-native"
 
-export const Joke = ({joke}) => {
+export const Joke = ({ joke }) => {
     return (
-        <View>
+        <View style={styles.wrapper}>
             <Text style={styles.text}>
                 {joke}
             </Text>
@@ -11,6 +11,9 @@ export const Joke = ({joke}) => {
 }
 
 const styles = StyleSheet.create({
+    wrapper: {
+        marginTop: 130
+    },
     text: {
         marginHorizontal: 24,
         marginBottom: 16,
