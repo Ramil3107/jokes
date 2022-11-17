@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     },
     divider: {
         borderBottomColor: "#E6E6E6",
-        borderBottomWidth: 1,
-        marginBottom: 130
+        borderBottomWidth: 1
     }
 })
