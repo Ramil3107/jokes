@@ -18,6 +18,8 @@ export const Today = () => {
       <Like
         active={isActive}
         handlePress={() => setIsActive(!isActive)}
+        iconHeight={28}
+        iconWidth={28}
       />
 
     </SafeAreaView>
