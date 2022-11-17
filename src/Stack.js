@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Today } from './screens/Today';
+import { Today } from './screens/today/Today';
 import { History } from './screens/History';
 import TodayIconSvg from './assets/icons/TodayIconSvg';
 import HistoryIconSvg from './assets/icons/HistoryIconSvg';
