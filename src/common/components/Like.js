@@ -1,7 +1,19 @@
 import { StyleSheet, TouchableOpacity } from "react-native"
 import FavouriteIconSvg from '../../assets/icons/FavouriteIconSvg';
 
-export const Like = ({ handlePress, active, iconWidth, iconHeight }) => {
+export const Like = ({ handlePress, active, height, width, iconWidth, iconHeight }) => {
+
+    const styles = StyleSheet.create({
+        main: {
+            justifyContent: "center",
+            alignItems: "center",
+            height: height,
+            width: width,
+            borderRadius: 100,
+            marginLeft: 24
+        }
+    })
+
     return (
         <TouchableOpacity
             onPress={handlePress}
@@ -16,13 +28,3 @@ export const Like = ({ handlePress, active, iconWidth, iconHeight }) => {
         </TouchableOpacity>)
 }
 
-const styles = StyleSheet.create({
-    main: {
-        justifyContent: "center",
-        alignItems: "center",
-        height: 64,
-        width: 64,
-        borderRadius: 100,
-        marginLeft: 24
-    }
-})

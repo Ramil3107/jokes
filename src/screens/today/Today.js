@@ -18,6 +18,8 @@ export const Today = () => {
       <Like
         active={isActive}
         handlePress={() => setIsActive(!isActive)}
+        height={64}
+        width={64}
         iconHeight={28}
         iconWidth={28}
       />
