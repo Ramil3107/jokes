@@ -4,6 +4,8 @@ import { Today } from './screens/today/Today';
 import { History } from './screens/history/History';
 import TodayIconSvg from './assets/icons/TodayIconSvg';
 import HistoryIconSvg from './assets/icons/HistoryIconSvg';
+import { Favourites } from './screens/favourites/Favourites';
+import FavouriteIconSvg from './assets/icons/FavouriteIconSvg';
 
 const Tab = createBottomTabNavigator();
 
@@ -12,7 +14,7 @@ export const Stack = () => {
         <NavigationContainer>
             <Tab.Navigator
                 screenOptions={{
-                    tabBarStyle: { height: 102, borderTopWidth: 1, paddingHorizontal: 100, paddingBottom: 40 },
+                    tabBarStyle: { height: 102, borderTopWidth: 1, paddingHorizontal: 80, paddingBottom: 40 },
                     tabBarIconStyle: { marginBottom: -10 },
                     tabBarActiveTintColor: "#9763FF",
                     tabBarInactiveTintColor: "#C1C3C6",
@@ -32,6 +34,13 @@ export const Stack = () => {
                     component={History}
                     options={{
                         tabBarIcon: ({ color }) => <HistoryIconSvg width={28} height={28} stroke={color} />
+                    }}
+                />
+                <Tab.Screen
+                    name="Favourites"
+                    component={Favourites}
+                    options={{
+                        tabBarIcon: ({ color }) => <FavouriteIconSvg width={28} height={28} stroke={color} />
                     }}
                 />
             </Tab.Navigator>
