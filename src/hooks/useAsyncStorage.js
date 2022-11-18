@@ -1,22 +1,26 @@
 import AsyncStorage from "@react-native-community/async-storage";
-import { useEffect, useState } from "react";
+import { Alert } from "react-native";
 
 export function useAsyncStorage() {
 
     async function getItem(key) {
         try {
             const item = await AsyncStorage.getItem(key)
-            return item
+            const parsedItem = JSON.parse(item)
+            return parsedItem
         } catch (error) {
             console.log(error)
+            Alert.alert(error)
         }
     }
 
     async function setItem(key, value) {
+        const stringifiedValue = JSON.stringify(value)
         try {
-            const item = await AsyncStorage.setItem(key, value)
+            const item = await AsyncStorage.setItem(key, stringifiedValue)
         } catch (error) {
             console.log(error)
+            Alert.alert(error)
         }
     }
 
@@ -25,6 +29,7 @@ export function useAsyncStorage() {
             const item = await AsyncStorage.removeItem(key)
         } catch (error) {
             console.log(error)
+            Alert.alert(error)
         }
     }
 
