@@ -11,7 +11,11 @@ const today = new Date()
 export const setAsyncStorage = async (setJoke) => {
 
     const { getItem, setItem, removeItem } = useAsyncStorage()
- 
+
+    // removeItem(DATE_KEY)
+    // removeItem(CURRENT_JOKE)
+    // removeItem(JOKES_HISTORY)
+
     const joke = await jokesAPI.getProgrammingJoke()
     const fullJoke = {
         text: joke,
@@ -20,16 +24,13 @@ export const setAsyncStorage = async (setJoke) => {
 
     const date = await getItem(DATE_KEY)
     const parsedDate = parseJSON(date)
-    console.log(date)
-
 
     if ((date === null) || !isToday(parsedDate)) {
-        setItem(DATE_KEY, JSON.stringify(today))
-        setItem(CURRENT_JOKE, JSON.stringify(fullJoke))
+        setItem(DATE_KEY, today)
+        setItem(CURRENT_JOKE, fullJoke)
         setJoke(fullJoke)
     } else if (isToday(parsedDate)) {
         const currentJoke = await getItem(CURRENT_JOKE)
-        const parsedCurrentJoke = JSON.parse(currentJoke)
-        setJoke(parsedCurrentJoke)
+        setJoke(currentJoke)
     }
 }
