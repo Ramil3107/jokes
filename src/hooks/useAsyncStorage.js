@@ -20,5 +20,13 @@ export function useAsyncStorage() {
         }
     }
 
-    return { getItem, setItem }
+    async function removeItem(key) {
+        try {
+            const item = await AsyncStorage.removeItem(key)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    return { getItem, setItem, removeItem }
 }
