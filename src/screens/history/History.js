@@ -1,23 +1,41 @@
-import { useState } from "react"
-import { SafeAreaView, StyleSheet, Text, View } from "react-native"
+import { useEffect, useState } from "react"
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native"
 import { Like } from "../../common/components/Like"
 import { ScreenTitle } from "../../common/components/ScreenTitle"
+import { useAsyncStorage } from "../../hooks/useAsyncStorage"
 import { ListItem } from "./components/ListItem"
 
 export const History = () => {
 
     const [isFavourite, setIsFavourite] = useState(false)
+    const [jokeHistory, setJokeHistory] = useState([])
+    const { getItem } = useAsyncStorage()
+
+    const setHistory = async () => {
+        const history = await getItem("JOKES_HISTORY")
+        setJokeHistory(history)
+    }
+
+    useEffect(() => {
+        setHistory()
+    }, [])
 
     return (
         <SafeAreaView>
             <ScreenTitle title="History" />
 
-            <ListItem
-                likeHandle={() => setIsFavourite(!isFavourite)}
-                isFavourite={isFavourite}
-                text="How do you know God is a shitty programmer? He wrote the OS for an entire universe, but didn't leave a single useful comment." />
-
-
+            <FlatList
+                data={jokeHistory}
+                renderItem={({ item }) => {
+                    return (
+                        <ListItem
+                            text={item.text}
+                            isFavourite={item.isFavourite}
+                        />
+                    )
+                }}
+                keyExtractor={item => item.text}
+            />
 
         </SafeAreaView>
     )
