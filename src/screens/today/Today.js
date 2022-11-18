@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { ScrollView } from "react-native";
+import { useEffect, useState } from "react";
+import { RefreshControl, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context"
 import { useDispatch, useSelector } from "react-redux";
 import { Like } from "../../common/components/Like";
@@ -11,14 +11,19 @@ import { Joke } from "./components/Joke";
 export const Today = () => {
 
   const dispatch = useDispatch()
+  const [refreshing, setRefreshing] = useState(false);
   const { dailyJoke } = useSelector(state => state.jokes)
 
   const isFavouriteHandler = () => {
     dispatch(handleIsFavouriteThunk(dailyJoke))
   }
 
-  useEffect(() => {
+  const setStorage = () => {
     dispatch(setAsyncStorageThunk())
+  }
+
+  useEffect(() => {
+    setStorage()
   }, [])
 
   return (
@@ -26,7 +31,7 @@ export const Today = () => {
 
       <ScreenTitle title="Today" />
 
-      <ScrollView >
+      <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={setStorage} />}>
 
         <Joke joke={dailyJoke.text} />
 
