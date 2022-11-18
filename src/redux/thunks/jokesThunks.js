@@ -78,8 +78,8 @@ export const handleIsFavouriteThunk = createAsyncThunk(
 
         if (joke.text === dailyJoke.text) {
             dispatch(setDailyJoke(updatedJoke))
-            dispatch(setJokesHistory(updatedHistory))
             setItem(CURRENT_JOKE, updatedJoke)
-            setItem(JOKES_HISTORY, updatedHistory)
         }
+        dispatch(setJokesHistory(updatedHistory))
+        setItem(JOKES_HISTORY, updatedHistory)
     })
