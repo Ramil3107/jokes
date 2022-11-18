@@ -29,7 +29,7 @@ export const Today = () => {
 
       <ScrollView >
 
-        <Joke joke={joke} />
+        <Joke joke={joke.text} />
 
         <Like
           active={isActive}
