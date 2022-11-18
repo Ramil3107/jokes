@@ -1,33 +1,33 @@
-import { useEffect, useState } from "react"
-import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native"
+import { useEffect } from "react";
+import { FlatList, SafeAreaView } from "react-native";
+import { useDispatch, useSelector } from "react-redux"
 import { ScreenTitle } from "../../common/components/ScreenTitle"
-import { useAsyncStorage } from "../../hooks/useAsyncStorage"
+import { handleIsFavouriteThunk } from "../../redux/thunks/jokesThunks"
 import { ListItem } from "./components/ListItem"
 
 export const History = () => {
 
-    const [isFavourite, setIsFavourite] = useState(false)
-    const [jokeHistory, setJokeHistory] = useState([])
-    const { getItem } = useAsyncStorage()
+    const dispatch = useDispatch()
+    const { jokesHistory } = useSelector(state => state.jokes)
 
-    const setHistory = async () => {
-        const history = await getItem("JOKES_HISTORY")
-        setJokeHistory(history)
+    const isFavouriteHandler = (item) => {
+        dispatch(handleIsFavouriteThunk(item))
     }
 
     useEffect(() => {
-        setHistory()
+
     }, [])
 
     return (
-        <SafeAreaView style={{flex:1}}>
+        <SafeAreaView style={{ flex: 1 }}>
             <ScreenTitle title="History" />
 
             <FlatList
-                data={jokeHistory}
+                data={jokesHistory}
                 renderItem={({ item }) => {
                     return (
                         <ListItem
+                            handleIsFavourite={() => isFavouriteHandler(item)}
                             text={item.text}
                             isFavourite={item.isFavourite}
                         />

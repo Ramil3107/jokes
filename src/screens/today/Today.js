@@ -1,26 +1,25 @@
-import AsyncStorage from "@react-native-community/async-storage";
-import { useEffect, useMemo, useState } from "react";
-import { Alert, ScrollView, View } from "react-native";
+import { useEffect } from "react";
+import { ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context"
-import { jokesAPI } from "../../api/jokesAPI";
+import { useDispatch, useSelector } from "react-redux";
 import { Like } from "../../common/components/Like";
 import { ScreenTitle } from "../../common/components/ScreenTitle";
-import { useAsyncStorage } from "../../hooks/useAsyncStorage";
-import { isToday } from "../../utils/date";
-import { setAsyncStorage } from "./actions/actions";
+import { handleIsFavouriteThunk, setAsyncStorageThunk } from "../../redux/thunks/jokesThunks";
 import { Joke } from "./components/Joke";
 
 
 export const Today = () => {
 
-  const [isActive, setIsActive] = useState(false)
-  const [joke, setJoke] = useState("")
+  const dispatch = useDispatch()
+  const { dailyJoke } = useSelector(state => state.jokes)
 
+  const isFavouriteHandler = () => {
+    dispatch(handleIsFavouriteThunk(dailyJoke))
+  }
 
   useEffect(() => {
-    setAsyncStorage(setJoke)
+    dispatch(setAsyncStorageThunk())
   }, [])
-
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -29,11 +28,11 @@ export const Today = () => {
 
       <ScrollView >
 
-        <Joke joke={joke.text} />
+        <Joke joke={dailyJoke.text} />
 
         <Like
-          active={isActive}
-          handlePress={() => setIsActive(!isActive)}
+          active={dailyJoke.isFavourite}
+          handlePress={() => isFavouriteHandler()}
           height={64}
           width={64}
           iconHeight={28}

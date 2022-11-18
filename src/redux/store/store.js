@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import jokesSlice from './jokesSlice'
+import jokesSlice from '../slices/jokesSlice'
 
 export const store = configureStore({
   reducer: {
