@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native"
-import { Like } from "../../common/components/Like"
 import { ScreenTitle } from "../../common/components/ScreenTitle"
 import { useAsyncStorage } from "../../hooks/useAsyncStorage"
 import { ListItem } from "./components/ListItem"
@@ -21,7 +20,7 @@ export const History = () => {
     }, [])
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{flex:1}}>
             <ScreenTitle title="History" />
 
             <FlatList
