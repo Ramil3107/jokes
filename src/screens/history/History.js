@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { FlatList, SafeAreaView } from "react-native";
 import { useDispatch, useSelector } from "react-redux"
 import { ScreenTitle } from "../../common/components/ScreenTitle"
@@ -14,12 +13,9 @@ export const History = () => {
         dispatch(handleIsFavouriteThunk(item))
     }
 
-    useEffect(() => {
-
-    }, [])
-
     return (
         <SafeAreaView style={{ flex: 1 }}>
+
             <ScreenTitle title="History" />
 
             <FlatList

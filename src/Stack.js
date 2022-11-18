@@ -5,7 +5,6 @@ import { History } from './screens/history/History';
 import TodayIconSvg from './assets/icons/TodayIconSvg';
 import HistoryIconSvg from './assets/icons/HistoryIconSvg';
 
-
 const Tab = createBottomTabNavigator();
 
 export const Stack = () => {

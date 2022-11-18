@@ -7,7 +7,6 @@ import { ScreenTitle } from "../../common/components/ScreenTitle";
 import { handleIsFavouriteThunk, setAsyncStorageThunk } from "../../redux/thunks/jokesThunks";
 import { Joke } from "./components/Joke";
 
-
 export const Today = () => {
 
   const dispatch = useDispatch()
@@ -23,7 +22,7 @@ export const Today = () => {
   }
 
   useEffect(() => {
-    setStorage()
+    setStorage() 
   }, [])
 
   return (
@@ -37,7 +36,7 @@ export const Today = () => {
 
         <Like
           active={dailyJoke.isFavourite}
-          handlePress={() => isFavouriteHandler()}
+          handlePress={isFavouriteHandler}
           height={64}
           width={64}
           iconHeight={28}

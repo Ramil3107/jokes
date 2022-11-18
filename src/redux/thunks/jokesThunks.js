@@ -10,11 +10,15 @@ const CURRENT_JOKE = "CURRENT_JOKE"
 const JOKES_HISTORY = "JOKES_HISTORY"
 const today = new Date()
 
+
+// first and daily set logic:
+
 export const setAsyncStorageThunk = createAsyncThunk(
     "jokes/setAsyncStorageThunk",
     async (_, { dispatch }) => {
         const { getItem, setItem, removeItem } = useAsyncStorage()
 
+        // to clear storage on dev mode:
         // removeItem(DATE_KEY)
         // removeItem(CURRENT_JOKE)
         // removeItem(JOKES_HISTORY)
@@ -45,7 +49,6 @@ export const setAsyncStorageThunk = createAsyncThunk(
                 const updatedHistory = [...jokeHistory, { ...joke }]
                 dispatch(setJokesHistory(updatedHistory))
                 setItem(JOKES_HISTORY, updatedHistory)
-
             }
 
         } else if (isToday(parsedDate)) {   // if async storage date == today date, get daily joke and set it to local state
@@ -55,6 +58,8 @@ export const setAsyncStorageThunk = createAsyncThunk(
             dispatch(setJokesHistory(jokesHistory))
         }
     })
+
+// handle isFavourite status (onPress on "like" button):
 
 export const handleIsFavouriteThunk = createAsyncThunk(
     "jokes/handleIsFavourite",
@@ -69,17 +74,13 @@ export const handleIsFavouriteThunk = createAsyncThunk(
         }
 
         const updatedHistory = jokesHistory.map(jokeFromHistory => {   // prepare updated history array
-            if (joke.text === jokeFromHistory.text) {
-                return updatedJoke
-            } else {
-                return jokeFromHistory
-            }
+            return joke.text === jokeFromHistory.text ? updatedJoke : jokeFromHistory
         })
 
-        if (joke.text === dailyJoke.text) {
+        if (joke.text === dailyJoke.text) {   // liked joke == daily joke ? update daily joke (storage and redux store)
             dispatch(setDailyJoke(updatedJoke))
             setItem(CURRENT_JOKE, updatedJoke)
         }
-        dispatch(setJokesHistory(updatedHistory))
+        dispatch(setJokesHistory(updatedHistory))  // update history array in any case (storage and redux store)
         setItem(JOKES_HISTORY, updatedHistory)
     })

@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         marginTop: 130
     },
     text: {
-        fontFamily:"Inter",
+        fontFamily: "Inter",
         marginHorizontal: 24,
         marginBottom: 16,
         fontSize: 24,
