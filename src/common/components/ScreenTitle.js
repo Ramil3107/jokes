@@ -16,7 +16,8 @@ export const ScreenTitle = ({ title }) => {
 
 const styles = StyleSheet.create({
     headline: {
-        fontFamily:"Inter",
+        color: "black",
+        fontFamily: "Inter",
         fontSize: 36,
         fontWeight: "700",
         marginTop: 73,

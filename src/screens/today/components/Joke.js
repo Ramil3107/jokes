@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
         marginTop: 130
     },
     text: {
+        color:"black",
         fontFamily: "Inter",
         marginHorizontal: 24,
         marginBottom: 16,
